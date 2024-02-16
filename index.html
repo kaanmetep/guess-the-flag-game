@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess The Flag</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="header__title">Guess The Flag</h1>
+      </header>
+      <main class="main">
+        <section class="player player--0 player--active">
+          <h2 class="name" id="name--0">Player 1</h2>
+          <p class="score" id="score--0">0</p>
+
+          <div class="options options--active" id="options--0">
+            <button class="btn option"></button>
+            <button class="btn option"></button>
+            <button class="btn option"></button>
+            <button class="btn option"></button>
+          </div>
+        </section>
+        <section class="player player--1">
+          <h2 class="name" id="name--1">Player 2</h2>
+          <p class="score" id="score--1" 43>0</p>
+        </section>
+        <img
+          src="https://flagcdn.com/me.svg"
+          alt="Flag"
+          class="flag__img hidden"
+        />
+        <button class="btn btn--next hidden">NEXT!</button>
+      </main>
+      <p class="answer answer--correct hidden">Correct Answer!</p>
+      <p class="answer answer--wrong hidden">Wrong Answer!</p>
+      <p class="winner hidden">
+        WINNER IS: <span class="player--winner"></span> !!!
+      </p>
+      <button class="btn btn--again hidden">Play again!</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
