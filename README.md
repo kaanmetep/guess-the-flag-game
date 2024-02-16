@@ -13,7 +13,8 @@ The first player to reach 25 points wins the game.
 - HTML
 - CSS
 - JavaScript
-- 
+
+
 ## Used API
 This project utilizes the [Rest Countries API](https://restcountries.com/), which provides extensive information about countries worldwide. 
 The API is primarily used to fetch data related to country flags and details for the flag guessing game.
