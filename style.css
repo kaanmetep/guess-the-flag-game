@@ -25,9 +25,17 @@ img {
   gap: 1rem;
   background-image: linear-gradient(to top left, #ffe3e3 0%, #ffc9c9 100%);
 }
+.header {
+  display: flex;
+  gap: 2rem;
+}
 .header__title {
   font-size: 8rem;
-  color: #f03e3e;
+  color: #fa5252;
+}
+.header__icon {
+  width: 5rem;
+  stroke: #c92a2a;
 }
 main {
   position: relative;
@@ -129,6 +137,52 @@ main {
   left: 50%;
   transform: translateX(-50%);
   bottom: 1rem;
+}
+.form-container {
+  margin-top: 3rem;
+  background-color: #ffe3e3;
+  padding: 5rem 13rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.form-container > .form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+.form--player-names {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.form--radio-buttons {
+  display: flex;
+  gap: 2rem;
+}
+.form--radio-buttons label {
+  margin-left: 0.7rem;
+}
+.form__label {
+  font-size: 2rem;
+}
+.form__label:first-child {
+  margin-right: 1rem;
+}
+.form__btn {
+  background-color: #fa5252;
+  font-size: 1.8rem;
+}
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="radio"] {
+  transform: scale(1.5);
+  accent-color: #f03e3e;
 }
 @media only screen and (max-width: 800px) {
   html {

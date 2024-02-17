@@ -3,6 +3,7 @@ let randomCountry;
 let correctAnswer;
 let options;
 let fetchedData;
+let maxCountry; // upper limit. depends on playing worldwide or europe.
 const playerScores = [0, 0];
 let btnOptions = document.querySelectorAll(".option");
 let btnOptionsDiv = document.querySelector(".options");
@@ -15,6 +16,34 @@ const player0Score = document.getElementById("score--0");
 const player1Score = document.getElementById("score--1");
 const winnerText = document.querySelector(".winner");
 const winnerPlayer = document.querySelector(".player--winner");
+const player0Name = document.getElementById("name--0");
+const player1Name = document.getElementById("name--1");
+const main = document.querySelector(".main");
+// *** selecting form elements ***///
+const btnFormSubmit = document.querySelector(".form__btn");
+const formPlayer0Name = document.getElementById("player--0-name");
+const formPlayer1Name = document.getElementById("player--1-name");
+const formContainer = document.querySelector(".form-container");
+const form = document.querySelector(".form");
+//////////////////////////////
+const onFormSubmit = function (e) {
+  if (!form.checkValidity()) {
+    alert("Please fill all the areas.");
+    return;
+  }
+  e.preventDefault();
+  let selectedOption = document.querySelector(
+    'input[name="user-selection"]:checked'
+  );
+  gameStarts(selectedOption);
+};
+const gameStarts = function (selectedOption) {
+  formContainer.classList.add("hidden");
+  main.classList.remove("hidden");
+  player0Name.textContent = formPlayer0Name.value;
+  player1Name.textContent = formPlayer1Name.value;
+  init(selectedOption);
+};
 ///////////////////////////////////////////////
 const clickOnCorrectAnswer = function (e) {
   answerCorrect.classList.remove("hidden");
@@ -59,6 +88,7 @@ const resetColorAndDisabled = function (options) {
   });
 };
 const nextOnClick = function (e) {
+  selectRandomCountry(fetchedData);
   resetColorAndDisabled(options);
   if (player === 0) {
     btnOptionsDiv.parentNode.nextElementSibling.append(btnOptionsDiv);
@@ -67,7 +97,6 @@ const nextOnClick = function (e) {
   }
   changePlayer();
   hideCorrectAndWrong();
-  selectRandomCountry(fetchedData);
   btnNext.classList.add("hidden");
   document.querySelector(".player--0").classList.toggle("player--active");
   document.querySelector(".player--1").classList.toggle("player--active");
@@ -91,26 +120,34 @@ const optionOnClick = function (e, randomCountry) {
   }
 };
 const selectRandomCountry = function (data) {
-  const randomNumber = Math.round(Math.random() * 248) + 1;
+  const randomNumber = Math.round(Math.random() * maxCountry) + 1;
   randomCountry = data[randomNumber];
   imgFlag.src = randomCountry.flags?.png;
   imgFlag.classList.remove("hidden");
-  let randomNumberForOptions = Math.round(Math.random() * 248) + 1;
+  let randomNumberForOptions = Math.round(Math.random() * maxCountry) + 1;
   // to fill other 3 options with random countries.
   let randomOptionCorrectAnswer = Math.round(Math.random() * 3);
   // to put the correct answer in a random option. from 0 to 3
   btnOptions.forEach(function (btn, index) {
     btn.textContent = data[randomNumberForOptions].name.common;
-    randomNumberForOptions = Math.round(Math.random() * 248) + 1;
+    randomNumberForOptions = Math.round(Math.random() * maxCountry) + 1;
     if (index === randomOptionCorrectAnswer) {
       btn.textContent = randomCountry.name.common;
       correctAnswer = index;
     }
   });
 };
-const getCountries = async function () {
+const getCountries = async function (selectedOption) {
+  let link;
+  if (selectedOption.value === "worldwide") {
+    link = "https://restcountries.com/v3.1/all";
+    maxCountry = 248;
+  } else {
+    link = "https://restcountries.com/v3.1/region/europe";
+    maxCountry = 52;
+  }
   try {
-    const res = await fetch("https://restcountries.com/v3.1/all");
+    const res = await fetch(link);
     if (!res.ok) {
       throw new Error("An error occured with the server...");
     }
@@ -123,15 +160,15 @@ const getCountries = async function () {
     answerCorrect.classList.remove("hidden");
   }
 };
-const init = async function () {
-  fetchedData = await getCountries();
+const init = async function (selectedOption) {
+  fetchedData = await getCountries(selectedOption);
   selectRandomCountry(fetchedData);
 };
 
 ////////////////////////
-init();
 btnNext.addEventListener("click", nextOnClick);
 btnOptionsDiv.addEventListener("click", (e) =>
   optionOnClick(e, randomCountry, correctAnswer)
 );
 btnPlayAgain.addEventListener("click", () => location.reload());
+btnFormSubmit.addEventListener("click", onFormSubmit);
