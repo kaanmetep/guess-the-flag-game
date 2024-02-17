@@ -3,6 +3,7 @@ This project is a simple flag guessing game developed using HTML, CSS, and JavaS
 The first player to reach 25 points wins the game.
 
 ## Features
+- Allow users to choose between playing worldwide or in Europe
 - Display random flags
 - Prompt users to select the correct country from 4 randomly displayed options
 - Award points for correct guesses
