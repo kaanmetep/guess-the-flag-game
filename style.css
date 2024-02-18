@@ -80,7 +80,13 @@ main {
   top: 2rem;
   transform: translateX(-50%);
 }
-
+.img-loading {
+  position: absolute;
+  left: 50%;
+  top: 2rem;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+}
 .options {
   display: flex;
   flex-direction: column;

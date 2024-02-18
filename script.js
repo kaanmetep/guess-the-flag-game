@@ -19,6 +19,7 @@ const winnerPlayer = document.querySelector(".player--winner");
 const player0Name = document.getElementById("name--0");
 const player1Name = document.getElementById("name--1");
 const main = document.querySelector(".main");
+const txtImgLoading = document.querySelector(".img-loading");
 // *** selecting form elements ***///
 const btnFormSubmit = document.querySelector(".form__btn");
 const formPlayer0Name = document.getElementById("player--0-name");
@@ -45,6 +46,14 @@ const gameStarts = function (selectedOption) {
   init(selectedOption);
 };
 ///////////////////////////////////////////////
+const imgLoading = function () {
+  imgFlag.classList.add("hidden");
+  txtImgLoading.classList.remove("hidden");
+};
+const imgLoaded = function () {
+  imgFlag.classList.remove("hidden");
+  txtImgLoading.classList.add("hidden");
+};
 const clickOnCorrectAnswer = function (e) {
   answerCorrect.classList.remove("hidden");
   e.target.style.backgroundColor = "green";
@@ -88,6 +97,7 @@ const resetColorAndDisabled = function (options) {
   });
 };
 const nextOnClick = function (e) {
+  imgLoading();
   selectRandomCountry(fetchedData);
   resetColorAndDisabled(options);
   if (player === 0) {
@@ -123,7 +133,6 @@ const selectRandomCountry = function (data) {
   const randomNumber = Math.round(Math.random() * maxCountry) + 1;
   randomCountry = data[randomNumber];
   imgFlag.src = randomCountry.flags?.png;
-  imgFlag.classList.remove("hidden");
   let randomNumberForOptions = Math.round(Math.random() * maxCountry) + 1;
   // to fill other 3 options with random countries.
   let randomOptionCorrectAnswer = Math.round(Math.random() * 3);
@@ -163,6 +172,7 @@ const getCountries = async function (selectedOption) {
 const init = async function (selectedOption) {
   fetchedData = await getCountries(selectedOption);
   selectRandomCountry(fetchedData);
+  // imgFlag.classList.remove("hidden");
 };
 
 ////////////////////////
@@ -172,3 +182,4 @@ btnOptionsDiv.addEventListener("click", (e) =>
 );
 btnPlayAgain.addEventListener("click", () => location.reload());
 btnFormSubmit.addEventListener("click", onFormSubmit);
+imgFlag.addEventListener("load", imgLoaded);
