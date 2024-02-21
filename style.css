@@ -80,12 +80,29 @@ main {
   top: 2rem;
   transform: translateX(-50%);
 }
-.img-loading {
+
+.spinner {
   position: absolute;
   left: 50%;
   top: 2rem;
   transform: translateX(-50%);
-  font-size: 1.3rem;
+}
+
+.spinner svg {
+  fill: white;
+  width: 3rem;
+  height: 3rem;
+  animation: 2s linear infinite rotate;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .options {
   display: flex;

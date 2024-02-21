@@ -19,7 +19,7 @@ const winnerPlayer = document.querySelector(".player--winner");
 const player0Name = document.getElementById("name--0");
 const player1Name = document.getElementById("name--1");
 const main = document.querySelector(".main");
-const txtImgLoading = document.querySelector(".img-loading");
+const spinner = document.querySelector(".spinner");
 // *** selecting form elements ***///
 const btnFormSubmit = document.querySelector(".form__btn");
 const formPlayer0Name = document.getElementById("player--0-name");
@@ -48,11 +48,11 @@ const gameStarts = function (selectedOption) {
 ///////////////////////////////////////////////
 const imgLoading = function () {
   imgFlag.classList.add("hidden");
-  txtImgLoading.classList.remove("hidden");
+  spinner.classList.remove("hidden");
 };
 const imgLoaded = function () {
   imgFlag.classList.remove("hidden");
-  txtImgLoading.classList.add("hidden");
+  spinner.classList.add("hidden");
 };
 const clickOnCorrectAnswer = function (e) {
   answerCorrect.classList.remove("hidden");
