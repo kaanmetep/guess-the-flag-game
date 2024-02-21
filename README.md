@@ -7,7 +7,7 @@ The first player to reach 25 points wins the game.
 - Display random flags
 - Prompt users to select the correct country from 4 randomly displayed options
 - Award points for correct guesses
-- Show correct flag if the user selects the wrong one
+- Show correct answer if user selects the wrong one
 - The first player to reach 25 points wins
 
 ## Technologies Used
